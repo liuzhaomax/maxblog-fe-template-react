@@ -1,0 +1,1 @@
+# maxblog-fe-template
