@@ -1,8 +1,9 @@
 import React from "react"
+import { COMPONENT } from "../../config/cstModule"
 
 function Component() {
 	return (
-		<div>
+		<div id={COMPONENT.KEY} className={COMPONENT.KEY}>
             I am Component
 		</div>
 	)

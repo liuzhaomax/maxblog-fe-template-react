@@ -1,100 +1,95 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Menu } from "antd"
 import "./HomeNav.css"
-import {HOME, COMPONENT} from "../config/constants"
-import {MenuOutlined} from "@ant-design/icons"
+import { HOME, MODULE } from "../config/cstModule"
+import { useNavigate } from "react-router-dom"
+import { MENU_ITEMS_WITH_SUB, MENU_ITEMS_WITHOUT_SUB } from "../config/cstMenuItem"
 
-class HomeNav extends React.Component {
-	constructor() {
-		super()
-		this.state = {
-			current: "0",
-			menu: null,
-		}
-	}
+function HomeNav() {
+	const [current, setCurrent] = useState(HOME.KEY)
+	const [menu, setMenu] = useState(null)
 
-	async componentDidMount() {
+	const navigate = useNavigate()
+
+	useEffect(() => {
 		let nav = document.getElementById("home-nav")
-		await window.addEventListener("scroll", () => {
-			let value = window.scrollY
-			if (value >= 710) {
-				nav.style.backgroundColor = "#333"
-				nav.style.height = "50px"
-			} else {
-				nav.style.backgroundColor = "rgba(0,0,0,0)"
-				nav.style.height = "100px"
-			}
-		})
-		await this.scrollToTop()
-		await this.menuHandler()
-		await this.listenWindowSize()
+		let changeNavStyle = async () => {
+			await window.addEventListener("scroll", () => {
+				let value = window.scrollY
+				if (value >= 710) {
+					nav.style.backgroundColor = "#333"
+					nav.style.height = "50px"
+				} else {
+					nav.style.backgroundColor = "rgba(0,0,0,0)"
+					nav.style.height = "100px"
+				}
+			})
+			await scrollToTop()
+			await menuHandler()
+			await listenWindowSize()
+		}
+		changeNavStyle()
+	}, [])
+
+	const listenWindowSize = () => {
+		window.addEventListener("resize", menuHandler.bind(this))
 	}
 
-	listenWindowSize = () => {
-		window.addEventListener("resize", this.menuHandler.bind(this))
-	}
-
-	menuHandler = () => {
+	const menuHandler = () => {
 		if (document.body.clientWidth >= 1020) {
-			this.setState({
-				menu: (
-					<Menu id="home-nav-menu" className="menu"
-						onClick={this.toggleNav}
-						selectedKeys={[this.state.current]}
-						mode={"horizontal"}
-						key="home-nav-menu-without-sub"
-					>
-						<Menu.Item className="menu-item" key="0"> {HOME.NAME} </Menu.Item>
-						<Menu.Item className="menu-item" key="1"> {COMPONENT.NAME} </Menu.Item>
-					</Menu>
-				)
-			})
+			setMenu(
+				<Menu id="home-nav-menu" className="menu"
+					onClick={toggleNav}
+					selectedKeys={[current]}
+					mode={"horizontal"}
+					key="home-nav-menu-without-sub"
+					items={MENU_ITEMS_WITHOUT_SUB}
+				/>
+			)
 		} else {
-			this.setState({
-				menu: (
-					<Menu id="home-nav-menu" className="menu"
-						onClick={this.toggleNav}
-						selectedKeys={[this.state.current]}
-						mode={"horizontal"}
-						key="home-nav-menu-with-sub"
-					>
-						<Menu.SubMenu id="home-submenu" key="SubMenu" icon={<MenuOutlined className="submenu-icon"/>}>
-							<Menu.Item className="menu-item" key="0"> {HOME.NAME} </Menu.Item>
-							<Menu.Item className="menu-item" key="1"> {COMPONENT.NAME} </Menu.Item>
-						</Menu.SubMenu>
-					</Menu>
-				)
-			})
+			setMenu(
+				<Menu id="home-nav-menu" className="menu"
+					onClick={toggleNav}
+					selectedKeys={[current]}
+					mode={"horizontal"}
+					key="home-nav-menu-with-sub"
+					items={MENU_ITEMS_WITH_SUB}
+				/>
+			)
 		}
 	}
 
-	scrollToTop = () => {
+	const toggleNav = e => {
+		setCurrent(e.key)
+		if (e.key === HOME.KEY) {
+			scrollToTop()
+		} else {
+			for (const key in MODULE) {
+				if (key === e.key) {
+					jumpToPath(MODULE[key])
+					break
+				}
+			}
+		}
+	}
+
+	const scrollToTop = () => {
 		document.getElementById("parallax-compo").scrollIntoView(true)
 	}
 
-	jumpToPath = path => {
-		this.props.history.push(path)
+	const jumpToPath = module => {
+		navigate(module.FULL_PATH, {
+			replace: true,
+			state: { module }
+		})
 	}
 
-	// toggleNav = e => {
-	// 	this.setState({ current: e.key })
-	// 	let path
-	// 	if (e.key === "0") {
-	// 		this.scrollToTop()
-	// 	} else {
-	// 		path = WEBSITE_1["MODULE_" + e.key].PATH
-	// 		this.jumpToPath(path)
-	// 	}
-	// }
-
-	render() {
-		return (
-			<div id="home-nav" className="HomeNav">
-				<div id="home-nav-logo" className="logo" onClick={this.jumpToPath.bind(this, HOME.FULL_PATH)}/>
-				{this.state.menu}
-			</div>
-		)
-	}
+	return (
+		<div id="home-nav" className="HomeNav">
+			<div id="home-nav-logo" className="logo" onClick={jumpToPath.bind(this, HOME)} />
+			{menu}
+		</div>
+	)
 }
 
 export default HomeNav

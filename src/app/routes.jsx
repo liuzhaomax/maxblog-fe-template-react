@@ -4,7 +4,8 @@ import Index from "../pages/index/Index"
 import NotFound from "../pages/notFound/NotFound"
 import Home from "../pages/home/Home"
 import HomeLayout from "../layouts/HomeLayout"
-import {HOME, COMPONENT, MAIN_LAYOUT} from "../config/constants"
+import {HOME, COMPONENT } from "../config/cstModule"
+import {MAIN_LAYOUT} from "../config/cstLayout"
 
 const lazyLoad = path => {
 	const Comp = React.lazy(() => import(`../${path}`))

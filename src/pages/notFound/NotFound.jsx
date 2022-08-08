@@ -1,49 +1,44 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import NoFound from "antd/es/result/noFound"
 import {Button} from "antd"
+import { useNavigate } from "react-router-dom"
 
-class NotFound extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			secondsToGo: 5,
-			timer: null,
-			timerOut: null,
-		}
-	}
+function NotFound() {
+	const [secondsToGo, setSecondsToGo] = useState(5)
+	const [timer, setTimer] = useState(null)
+	const [timerOut, setTimerOut] = useState(null)
 
-	componentDidMount() {
-		this.setState({
-			timer: setInterval(() => {
-				this.setState({
-					secondsToGo: this.state.secondsToGo - 1
-				})
-			}, 1000),
-			timerOut: setTimeout(() => {
-				this.props.history.goBack()
-			}, this.state.secondsToGo * 1000)
-		})
-	}
+	const navigate = useNavigate()
 
-	componentWillUnmount() {
-		clearTimeout(this.state.timerOut)
-		clearInterval(this.state.timer)
-	}
-
-	onClickGoBack = () => {
-		this.props.history.goBack()
-	}
-
-	render() {
-		return (
-			<div className="NotFound">
-				<h3>Your page is not found. Code: 404.</h3>
-				<NoFound/>
-				<p>Will jump to the previous page after <span id="nf-cound-down">{this.state.secondsToGo}</span> second(s).</p>
-				<Button type="primary" onClick={this.onClickGoBack}>Go Back</Button>
-			</div>
+	useEffect(() => {
+		setTimer(
+			setInterval(() => {
+				setSecondsToGo(secondsToGo - 1)
+			}, 1000)
 		)
+		setTimerOut(
+			setTimeout(() => {
+				navigate(-1)
+			}, secondsToGo * 1000)
+		)
+		return () => {
+			clearTimeout(timerOut)
+			clearInterval(timer)
+		}
+	},[secondsToGo])
+
+	const onClickGoBack = () => {
+		navigate(-1)
 	}
+
+	return (
+		<div className="NotFound">
+			<h3>寄！404</h3>
+			<NoFound/>
+			<p>将于 <span id="nf-cound-down">{secondsToGo}</span> 秒后跳转到之前的页面</p>
+			<Button type="primary" onClick={onClickGoBack}>返回</Button>
+		</div>
+	)
 }
 
 export default NotFound
