@@ -7,9 +7,9 @@ import bgFrontRock from "../assets/forest/front_rock.png"
 import HomeNav from "./HomeNav"
 import Footer from "./Footer"
 import { Outlet } from "react-router-dom"
-// import {Button} from "antd"
 import { GITHUB } from "../config/constants"
 import { GithubOutlined } from "@ant-design/icons"
+// import {Button} from "antd"
 
 function HomeLayout() {
 	useEffect(() => {
@@ -60,7 +60,7 @@ function HomeLayout() {
 			<section id="parallax-compo">
 				<img id="sky" src={bgSky} alt="sky img" data-depth="0.03" />
 				<img id="back-rock" src={bgBackRock} alt="back rock img" data-depth=".05" />
-				<h4 id="slogan1" data-depth="0">基于CI/CD DevOps流程的微服务架构Web应用</h4>
+				<h4 id="slogan1" data-depth="0">配置CI/CD DevOps流程的微服务架构Web应用</h4>
 				<h4 id="slogan2" data-depth="0">Golang + React</h4>
 				<h6 id="instruction" data-depth="0">GitHub开源项目</h6>
 				{/*<Button id="explore" shape="round" onClick={explore} data-depth="0">浏览</Button>*/}

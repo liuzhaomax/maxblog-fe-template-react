@@ -25,9 +25,9 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 axios.defaults.baseURL = config.beBaseUrl
 
-const rootElement = document.getElementById("root")
-const root = createRoot(rootElement)
-root.render(
+const ROOT_ELEM = document.getElementById("root")
+const ROOT = createRoot(ROOT_ELEM)
+ROOT.render(
 	<Provider store={store}>
 		<App store={store}/>
 	</Provider>
