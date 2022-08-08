@@ -65,7 +65,7 @@
     color: white;
     white-space: nowrap;
     font-size: 28px;
-    margin-top: -160px;
+    margin-top: -170px;
     pointer-events: none;
 }
 
@@ -74,30 +74,45 @@
     color: white;
     white-space: nowrap;
     font-size: 16px;
-    margin-top: -90px;
+    margin-top: -60px;
     pointer-events: none;
 }
 
+/*#explore {*/
+/*    display: inline-block;*/
+/*    cursor: pointer;*/
+/*    !*cursor: url('../assets/leaf-help.cur'), pointer;*!*/
+/*    border-color: white;*/
+/*    color: #eee;*/
+/*    background-color: rgba(0,0,0,0);*/
+/*    font-weight: bold;*/
+/*    font-size: 1.7rem;*/
+/*    width: 150px;*/
+/*    height: 50px;*/
+/*    margin-top: 30px;*/
+/*    line-height: 35px;*/
+/*    transition-duration: unset;*/
+/*}*/
+
+/*#explore:hover {*/
+/*    border-color: white;*/
+/*    color: white;*/
+/*    box-shadow: inset -2px -2px 6px rgba(255,255,255,1),*/
+/*    inset 2px 2px 6px rgba(255,255,255,1);*/
+/*}*/
+
 #explore {
-    display: inline-block;
-    cursor: pointer;
-    /*cursor: url('../assets/leaf-help.cur'), pointer;*/
-    border-color: white;
-    color: #eee;
-    background-color: rgba(0,0,0,0);
-    font-weight: bold;
-    font-size: 1.7rem;
-    width: 150px;
-    height: 50px;
-    margin-top: 30px;
-    line-height: 35px;
-    transition-duration: unset;
+    z-index: 9999999;
 }
 
-#explore:hover {
-    border-color: white;
+#explore svg {
     color: white;
-    box-shadow: inset -2px -2px 6px rgba(255,255,255,1),
-    inset 2px 2px 6px rgba(255,255,255,1);
+    width: 50px;
+    height: 50px;
+    margin-top: 30px;
+}
+
+#explore:hover svg{
+    color: #333;
 }
 

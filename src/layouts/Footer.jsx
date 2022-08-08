@@ -1,6 +1,5 @@
 import React from "react"
 import "./Footer.css"
-import {withRouter} from "react-router-dom"
 import logo from "../assets/logo_bottom_color.png"
 
 class Footer extends React.Component {
@@ -86,4 +85,4 @@ class Footer extends React.Component {
 	}
 }
 
-export default withRouter(Footer)
+export default Footer

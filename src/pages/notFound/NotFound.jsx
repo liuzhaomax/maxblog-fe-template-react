@@ -1,7 +1,6 @@
 import React from "react"
 import NoFound from "antd/es/result/noFound"
 import {Button} from "antd"
-import {withRouter} from "react-router-dom"
 
 class NotFound extends React.Component {
 	constructor(props) {
@@ -47,4 +46,4 @@ class NotFound extends React.Component {
 	}
 }
 
-export default withRouter(NotFound)
+export default NotFound

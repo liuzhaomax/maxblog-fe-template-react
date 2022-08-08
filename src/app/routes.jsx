@@ -1,20 +1,29 @@
-import React from "react"
-import {Route, Routes} from "react-router-dom"
-import NotFoundRoute from "./NotFoundRoute"
-import NotFound from "../pages/notFound/NotFound"
-import HomeRoute from "./HomeRoute"
-import MainLayoutRoute from "./MainLayoutRoute"
+import React, {Suspense} from "react"
+import { Routes, Route } from "react-router-dom"
 import Index from "../pages/index/Index"
+import NotFound from "../pages/notFound/NotFound"
 import Home from "../pages/home/Home"
-import {SERVICE_NAME} from "../config/constants"
+import HomeLayout from "../layouts/HomeLayout"
+import {HOME, COMPONENT, MAIN_LAYOUT} from "../config/constants"
 
-const MODULE_NAME_PATH = SERVICE_NAME.MODULE_NAME.PATH
+const lazyLoad = path => {
+	const Comp = React.lazy(() => import(`../${path}`))
+	return (
+		<Suspense fallback={<>加载中...</>}>
+			<Comp />
+		</Suspense>
+	)
+}
 
 export default (
 	<Routes>
-		<Route path="/" component={ Index } />
-		<HomeRoute path="/home" component={ Home } />
-		<MainLayoutRoute path={MODULE_NAME_PATH} component={ NotFound } />
-		<NotFoundRoute component={NotFound} />
+		<Route path="/" element={<Index/>}/>
+		<Route element={<HomeLayout/>}>
+			<Route path={HOME.PATH} element={<Home/>}/>
+		</Route>
+		<Route element={lazyLoad(MAIN_LAYOUT.FILE_PATH)}>
+			<Route path={COMPONENT.PATH} element={lazyLoad(COMPONENT.FILE_PATH)}/>
+		</Route>
+		<Route path="*" element={<NotFound/>}/>
 	</Routes>
 )

@@ -1,5 +1,5 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import {createRoot} from "react-dom/client"
 import "./index.css"
 import App from "./app/App"
 import thunk from "redux-thunk"
@@ -25,9 +25,10 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 axios.defaults.baseURL = config.beBaseUrl
 
-ReactDOM.render(
+const rootElement = document.getElementById("root")
+const root = createRoot(rootElement)
+root.render(
 	<Provider store={store}>
 		<App store={store}/>
-	</Provider>,
-	document.getElementById("root")
+	</Provider>
 )

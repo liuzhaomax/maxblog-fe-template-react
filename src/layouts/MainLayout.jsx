@@ -1,7 +1,8 @@
 import React from "react"
 import "./MainLayout.css"
-import MainNav from "./MainNav"
-import Footer from "./Footer"
+import {Outlet} from "react-router-dom"
+// import MainNav from "./MainNav"
+// import Footer from "./Footer"
 
 class MainLayout extends React.Component {
 
@@ -10,12 +11,11 @@ class MainLayout extends React.Component {
 	}
 
 	render() {
-		let { component: Component } = this.props
 		return (
 			<div className="MainLayout">
-				<MainNav/>
-				<Component/>
-				<Footer/>
+				{/*<MainNav/>*/}
+				<Outlet/>
+				{/*<Footer/>*/}
 			</div>
 		)
 	}

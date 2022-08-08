@@ -1,8 +1,7 @@
 import React from "react"
 import { Menu } from "antd"
-import {withRouter} from "react-router-dom"
 import "./HomeNav.css"
-import {WEBSITE_1} from "../config/constants"
+import {HOME, COMPONENT} from "../config/constants"
 import {MenuOutlined} from "@ant-design/icons"
 
 class HomeNav extends React.Component {
@@ -45,12 +44,8 @@ class HomeNav extends React.Component {
 						mode={"horizontal"}
 						key="home-nav-menu-without-sub"
 					>
-						<Menu.Item className="menu-item" key="0"> Home </Menu.Item>
-						<Menu.Item className="menu-item" key="1"> {WEBSITE_1.MODULE_1.NAME} </Menu.Item>
-						<Menu.Item className="menu-item" key="2"> {WEBSITE_1.MODULE_2.NAME} </Menu.Item>
-						<Menu.Item className="menu-item" key="3"> {WEBSITE_1.MODULE_3.NAME} </Menu.Item>
-						<Menu.Item className="menu-item" key="4"> {WEBSITE_1.MODULE_4.NAME} </Menu.Item>
-						<Menu.Item className="menu-item" key="5"> {WEBSITE_1.MODULE_5.NAME} </Menu.Item>
+						<Menu.Item className="menu-item" key="0"> {HOME.NAME} </Menu.Item>
+						<Menu.Item className="menu-item" key="1"> {COMPONENT.NAME} </Menu.Item>
 					</Menu>
 				)
 			})
@@ -64,12 +59,8 @@ class HomeNav extends React.Component {
 						key="home-nav-menu-with-sub"
 					>
 						<Menu.SubMenu id="home-submenu" key="SubMenu" icon={<MenuOutlined className="submenu-icon"/>}>
-							<Menu.Item className="menu-item" key="0"> Home </Menu.Item>
-							<Menu.Item className="menu-item" key="1"> {WEBSITE_1.MODULE_1.NAME} </Menu.Item>
-							<Menu.Item className="menu-item" key="2"> {WEBSITE_1.MODULE_2.NAME} </Menu.Item>
-							<Menu.Item className="menu-item" key="3"> {WEBSITE_1.MODULE_3.NAME} </Menu.Item>
-							<Menu.Item className="menu-item" key="4"> {WEBSITE_1.MODULE_4.NAME} </Menu.Item>
-							<Menu.Item className="menu-item" key="5"> {WEBSITE_1.MODULE_5.NAME} </Menu.Item>
+							<Menu.Item className="menu-item" key="0"> {HOME.NAME} </Menu.Item>
+							<Menu.Item className="menu-item" key="1"> {COMPONENT.NAME} </Menu.Item>
 						</Menu.SubMenu>
 					</Menu>
 				)
@@ -85,25 +76,25 @@ class HomeNav extends React.Component {
 		this.props.history.push(path)
 	}
 
-	toggleNav = e => {
-		this.setState({ current: e.key })
-		let path
-		if (e.key === "0") {
-			this.scrollToTop()
-		} else {
-			path = WEBSITE_1["MODULE_" + e.key].PATH
-			this.jumpToPath(path)
-		}
-	}
+	// toggleNav = e => {
+	// 	this.setState({ current: e.key })
+	// 	let path
+	// 	if (e.key === "0") {
+	// 		this.scrollToTop()
+	// 	} else {
+	// 		path = WEBSITE_1["MODULE_" + e.key].PATH
+	// 		this.jumpToPath(path)
+	// 	}
+	// }
 
 	render() {
 		return (
 			<div id="home-nav" className="HomeNav">
-				<div id="home-nav-logo" className="logo" onClick={this.jumpToPath.bind(this, "/home")}/>
+				<div id="home-nav-logo" className="logo" onClick={this.jumpToPath.bind(this, HOME.FULL_PATH)}/>
 				{this.state.menu}
 			</div>
 		)
 	}
 }
 
-export default withRouter(HomeNav)
+export default HomeNav

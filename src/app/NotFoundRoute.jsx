@@ -1,11 +1,9 @@
 import React from "react"
-import {Route, withRouter} from "react-router-dom"
+import {Route} from "react-router-dom"
 
-class NotFoundRoute extends React.Component {
-	render() {
-		let { component: Component, ...rest} = this.props
-		return <Route {...rest} render={(props) => ( <Component {...props} /> )} exact/>
-	}
+function NotFoundRoute() {
+	let { element: Component, ...rest} = this.props
+	return <Route {...rest} render={(props) => ( <Component {...props} /> )} />
 }
 
-export default withRouter(NotFoundRoute)
+export default NotFoundRoute

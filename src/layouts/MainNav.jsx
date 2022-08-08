@@ -1,9 +1,8 @@
 import React from "react"
 import "./MainNav.css"
-import {withRouter} from "react-router-dom"
 import {Menu} from "antd"
 import { MenuOutlined } from "@ant-design/icons"
-import {SERVICE_NAME} from "../config/constants"
+import { HOME, COMPONENT } from "../config/constants"
 
 class MainNav extends React.Component {
 	constructor(props) {
@@ -35,8 +34,8 @@ class MainNav extends React.Component {
 						mode={"horizontal"}
 						key="nav-menu-without-sub"
 					>
-						<Menu.Item className="menu-item" key="0"> Home </Menu.Item>
-						<Menu.Item className="menu-item" key="1"> {SERVICE_NAME.MODULE_NAME.NAME} </Menu.Item>
+						<Menu.Item className="menu-item" key="0"> {HOME.NAME} </Menu.Item>
+						<Menu.Item className="menu-item" key="1"> {COMPONENT.NAME} </Menu.Item>
 					</Menu>
 				)
 			})
@@ -50,8 +49,8 @@ class MainNav extends React.Component {
 						key="nav-menu-with-sub"
 					>
 						<Menu.SubMenu key="SubMenu" icon={<MenuOutlined className="submenu-icon"/>}>
-							<Menu.Item className="menu-item" key="0"> Home </Menu.Item>
-							<Menu.Item className="menu-item" key="1"> {SERVICE_NAME.MODULE_NAME.NAME} </Menu.Item>
+							<Menu.Item className="menu-item" key="0"> {HOME.NAME} </Menu.Item>
+							<Menu.Item className="menu-item" key="1"> {COMPONENT.NAME} </Menu.Item>
 						</Menu.SubMenu>
 					</Menu>
 				)
@@ -78,22 +77,22 @@ class MainNav extends React.Component {
 		}
 	}
 
-	searchKey = () => {
-		let result
-		let recordPath
-		let realPath
-		for (const key in SERVICE_NAME) {
-			if (SERVICE_NAME[key] instanceof Object) {
-				recordPath = SERVICE_NAME[key].PATH.split("/")[1]
-				realPath = window.location.pathname.split("/")[1]
-				if (recordPath === realPath) {
-					result = key
-					break
-				}
-			}
-		}
-		return result.slice(-1)
-	}
+	// searchKey = () => {
+	// 	let result
+	// 	let recordPath
+	// 	let realPath
+	// 	for (const key in SERVICE_NAME) {
+	// 		if (SERVICE_NAME[key] instanceof Object) {
+	// 			recordPath = SERVICE_NAME[key].PATH.split("/")[1]
+	// 			realPath = window.location.pathname.split("/")[1]
+	// 			if (recordPath === realPath) {
+	// 				result = key
+	// 				break
+	// 			}
+	// 		}
+	// 	}
+	// 	return result.slice(-1)
+	// }
 
 	jumpToPath = path => {
 		this.props.history.push(path)
@@ -122,4 +121,4 @@ class MainNav extends React.Component {
 	}
 }
 
-export default withRouter(MainNav)
+export default MainNav

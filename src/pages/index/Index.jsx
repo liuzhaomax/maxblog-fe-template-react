@@ -1,10 +1,9 @@
 import React from "react"
 import {Navigate} from "react-router-dom"
+import {HOME} from "../../config/constants"
 
-class Index extends React.Component {
-	render() {
-		return <Navigate to="/home" replace={true}/>
-	}
+function Index() {
+	return <Navigate to={HOME.FULL_PATH} replace/>
 }
 
 export default Index
