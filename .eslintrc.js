@@ -24,6 +24,7 @@ module.exports = {
 		"config",
 		"node_modules",
 		"public",
+		"server",
 		"scripts",
 		"test"
 	],
