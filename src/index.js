@@ -1,16 +1,12 @@
 import React from "react"
-import {createRoot} from "react-dom/client"
+import { createRoot } from "react-dom/client"
 import "./index.css"
 import App from "./app/App"
-import thunk from "redux-thunk"
-import { composeWithDevTools } from "redux-devtools-extension"
-import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
-import rootReducer from "./state/reducers"
 import configJson from "./config/config.json"
 import axios from "axios"
 import config from "./config/config"
-// import logger from "redux-logger"
+import { _STORE } from "./state/store"
 
 // https upgrading config
 if (configJson.run_mode === "release") {
@@ -21,14 +17,10 @@ if (configJson.run_mode === "release") {
 	head.appendChild(https)
 }
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
-
 axios.defaults.baseURL = config.beBaseUrl
 
-const ROOT_ELEM = document.getElementById("root")
-const ROOT = createRoot(ROOT_ELEM)
-ROOT.render(
-	<Provider store={store}>
-		<App store={store}/>
+createRoot(document.getElementById("root")).render(
+	<Provider store={_STORE}>
+		<App store={_STORE} />
 	</Provider>
 )

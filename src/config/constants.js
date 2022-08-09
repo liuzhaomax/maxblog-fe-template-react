@@ -66,5 +66,3 @@ export const CONTRIBUTORS = [
 	}
 ]
 
-export const MAP_LOADING = "MAP_LOADING"
-

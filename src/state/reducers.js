@@ -1,8 +1,8 @@
 import { combineReducers } from "redux"
-import shMapLoading from "./shMapLoading"
+import pizzaSlice from "./reducers/pizzaSlice"
 
 const rootReducer = combineReducers({
-	shMapLoading,
+	pizzaSlice,
 })
 
 export default rootReducer
