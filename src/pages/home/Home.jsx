@@ -7,7 +7,7 @@ function Home() {
 	const [contributors, setContributors] = useState(null)
 
 	useEffect(() => {
-		const fetchData = async () => {
+		(async () => {
 			await getContributors()
 				.then(res => {
 					setContributors(res.data)
@@ -15,8 +15,7 @@ function Home() {
 				.catch(err => {
 					console.log(err)
 				})
-		}
-		fetchData()
+		})()
 	},[])
 
 	return (

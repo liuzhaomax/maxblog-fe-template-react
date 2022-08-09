@@ -13,22 +13,19 @@ function HomeNav() {
 
 	useEffect(() => {
 		let nav = document.getElementById("home-nav")
-		let changeNavStyle = async () => {
-			await window.addEventListener("scroll", () => {
-				let value = window.scrollY
-				if (value >= 710) {
-					nav.style.backgroundColor = "#333"
-					nav.style.height = "50px"
-				} else {
-					nav.style.backgroundColor = "rgba(0,0,0,0)"
-					nav.style.height = "100px"
-				}
-			})
-			await scrollToTop()
-			await menuHandler()
-			await listenWindowSize()
-		}
-		changeNavStyle()
+		window.addEventListener("scroll", () => {
+			let value = window.scrollY
+			if (value >= 710) {
+				nav.style.backgroundColor = "#333"
+				nav.style.height = "50px"
+			} else {
+				nav.style.backgroundColor = "rgba(0,0,0,0)"
+				nav.style.height = "100px"
+			}
+		})
+		scrollToTop()
+		menuHandler()
+		listenWindowSize()
 	}, [])
 
 	const listenWindowSize = () => {
