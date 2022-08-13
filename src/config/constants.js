@@ -1,4 +1,4 @@
-export const GITHUB = "https://github.com/liuzhaomax?tab=repositories"
+export const GITHUB = "https://github.com/liuzhaomax"
 
 export const CONTRIBUTORS = [
 	{
