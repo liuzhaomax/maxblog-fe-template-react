@@ -1,12 +1,3 @@
-/****************************************************************************
- * @copyright   LIU Zhao
- * @authors     LIU Zhao (liuzhaomax@163.com)
- * @date        2021/7/2 21:23
- * @version     v1.0
- * @filename    index.js
- * @description
- ***************************************************************************/
-
 const express = require("express")
 const path = require("path")
 const ejs = require("ejs")
