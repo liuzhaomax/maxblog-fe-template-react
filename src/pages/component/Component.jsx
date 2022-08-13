@@ -3,11 +3,11 @@ import "./Component.css"
 import { COMPONENT } from "../../config/cstModule"
 
 function Component() {
-	return (
-		<div id={COMPONENT.KEY} className={COMPONENT.KEY}>
+    return (
+        <div id={COMPONENT.KEY} className={COMPONENT.KEY}>
             I am Component
-		</div>
-	)
+        </div>
+    )
 }
 
 export default Component
